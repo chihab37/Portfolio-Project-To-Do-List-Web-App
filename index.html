@@ -97,6 +97,17 @@
             background-color: #e0e0e0; /* Lighter gray on hover */
             transform: translateY(-3px);
         }
+
+        /* Button Styles */
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-container button {
+            margin: 5px;
+        }
     </style>
 </head>
 <body>
@@ -146,9 +157,10 @@
                     <p class="description">${descriptionInput.value}</p>
                     <p class="due-date">Due Date: ${dueDateInput.value}</p>
                     <p class="priority">Priority: ${priorityInput.value}</p>
-                    <button class="btn edit-btn">Edit</button>
-                    <button class="btn complete-btn">Mark as Complete</button>
-                    <button class="btn delete-btn">Delete</button>
+                    <div class="btn-container">
+                        <button class="btn complete-btn">Mark as Complete</button>
+                        <button class="btn delete-btn">Delete</button>
+                    </div>
                 `;
                 taskList.appendChild(taskItem);
                 taskInput.value = '';
@@ -163,12 +175,12 @@
 
         taskList.addEventListener('click', function (e) {
             if (e.target && e.target.classList.contains('complete-btn')) {
-                const taskItem = e.target.parentElement;
+                const taskItem = e.target.parentElement.parentElement; // Adjusted the target to find the parent li
                 taskItem.classList.toggle('completed');
                 sortTasks();
             } else if (e.target && e.target.classList.contains('delete-btn')) {
                 if (confirm('Are you sure you want to delete this task?')) {
-                    const taskItem = e.target.parentElement;
+                    const taskItem = e.target.parentElement.parentElement; // Adjusted the target to find the parent li
                     taskItem.remove();
                     sortTasks();
                 }
