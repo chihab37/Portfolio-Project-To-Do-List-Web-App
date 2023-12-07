@@ -5,43 +5,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo List</title>
     <style>
-        /* Add your CSS styles here for completed tasks and priority styles */
-        .completed {
-            text-decoration: line-through;
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
         }
-        .priority-high {
-            color: red;
-            font-weight: bold;
+
+        h1 {
+            color: #333;
         }
-        /* Add more priority levels if needed */
+
+        /* Theme Styles */
+        .dark-theme {
+            background-color: #333;
+            color: #fff;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #3498db;
+            padding: 20px;
+            color: #fff;
+        }
+
+        /* Form Styles */
+        #task-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Task List Styles */
+        #task-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        li:hover {
+            background-color: #f1f1f1;
+            transform: translateY(-3px);
+        }
+
+        /* Animation */
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #task-form {
+                width: 100%;
+            }
+            li {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>ToDo List</h1>
-    <form id="task-form">
-        <input type="text" id="task" placeholder="Add a new task" required>
-        <button type="submit">Add</button>
-    </form>
+    <header>
+        <h1>ToDo List</h1>
+    </header>
+    <div id="task-form">
+        <!-- Your form elements go here -->
+    </div>
     <ul id="task-list">
         <!-- Tasks will be added here -->
     </ul>
 
-    <div>
-        <button id="edit-btn">Edit</button>
-        <button id="complete-btn">Mark as Complete</button>
-        <button id="high-priority">Set Priority High</button>
-        <!-- Add more buttons for different priority levels if needed -->
-    </div>
-
     <script>
-        const taskForm = document.getElementById('task-form');
-        const taskInput = document.getElementById('task');
-        const taskList = document.getElementById('task-list');
-        const editButton = document.getElementById('edit-btn');
-        const completeButton = document.getElementById('complete-btn');
-        const highPriorityButton = document.getElementById('high-priority');
-
-        // Add task
+        // Your JavaScript code goes here
+    </script>
+</body>
+</html>
         taskForm.addEventListener('submit', function (e) {
             e.preventDefault();
             const taskText = taskInput.value.trim();
