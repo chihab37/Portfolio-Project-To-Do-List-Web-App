@@ -9,38 +9,38 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
-            margin: 40px 0; /* Add margin to lower the display */
+            margin: 40px 0;
             padding: 0;
             text-align: center;
         }
 
         /* Title Styles */
         header {
-            display: inline-block; /* Display as inline-block to wrap around text */
-            background-color: #3498db; /* Blue background color for the header */
-            padding: 10px 20px; /* Padding around the title */
-            color: #fff; /* White text color for the header */
+            display: inline-block;
+            background-color: #3498db;
+            padding: 10px 20px;
+            color: #fff;
             font-size: 35px;
             font-weight: bold;
-            border-radius: 20px; /* Rounded corners for the header */
-            margin-bottom: 40px; /* Add margin below the title */
+            border-radius: 20px;
+            margin-bottom: 40px;
         }
 
         /* Container Styles */
         .container {
-            max-width: 800px; /* Limit the content width */
-            margin: 0 auto; /* Center the content horizontally */
+            max-width: 800px;
+            margin: 0 auto;
             padding: 20px;
             background-color: #fff;
-            border-radius: 10px; /* Rounded corners for the container */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for the container */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         /* "Add New Task" Styles */
         #task-form {
             background-color: #f9f9f9;
             padding: 20px;
-            border-radius: 10px; /* Rounded corners for the form */
+            border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
@@ -70,7 +70,7 @@
 
         #task-form button[type="submit"]:hover,
         .btn:hover {
-            background-color: #2980b9; /* Darker blue on hover */
+            background-color: #2980b9;
         }
 
         /* Task List Styles */
@@ -83,7 +83,7 @@
             background-color: #f9f9f9;
             margin: 10px 0;
             padding: 20px;
-            border-radius: 10px; /* Rounded corners for task items */
+            border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
@@ -93,15 +93,14 @@
         }
 
         li.completed {
-            background-color: #2ecc71; /* Green background color for completed tasks */
+            background-color: #2ecc71;
         }
 
         li:hover {
-            background-color: #e0e0e0; /* Lighter gray on hover */
+            background-color: #e0e0e0;
             transform: translateY(-3px);
         }
 
-        /* Button Styles */
         .btn-container {
             display: flex;
             justify-content: space-between;
@@ -110,6 +109,26 @@
 
         .btn-container button {
             margin: 5px;
+        }
+
+        /* Priority Colors */
+        .low-priority {
+            border: 2px solid #1abc9c;
+        }
+
+        .medium-priority {
+            border: 2px solid #f1c40f;
+        }
+
+        .high-priority {
+            border: 2px solid #e74c3c;
+        }
+
+        /* Timer Styles */
+        .due-timer {
+            font-size: 14px;
+            color: #777;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -131,6 +150,7 @@
                 <select id="category">
                     <option value="work">Work</option>
                     <option value="personal">Personal</option>
+                    <option value="shopping">Shopping</option>
                     <!-- Add more categories as needed -->
                 </select>
                 <button type="submit" class="btn">Add Task</button>
@@ -154,11 +174,11 @@
             const taskText = taskInput.value.trim();
             if (taskText !== '') {
                 const taskItem = document.createElement('li');
-                taskItem.className = categoryInput.value; // Add category as a class
+                taskItem.className = `${categoryInput.value} ${priorityInput.value}`;
                 taskItem.innerHTML = `
                     <span>${taskText}</span>
                     <p class="description">${descriptionInput.value}</p>
-                    <p class="due-date">Due Date: ${dueDateInput.value}</p>
+                    <p class="due-timer">Due Date: ${dueDateInput.value}</p>
                     <p class="priority">Priority: ${priorityInput.value}</p>
                     <div class="btn-container">
                         <button class="btn complete-btn">Mark as Complete</button>
@@ -178,12 +198,12 @@
 
         taskList.addEventListener('click', function (e) {
             if (e.target && e.target.classList.contains('complete-btn')) {
-                const taskItem = e.target.parentElement.parentElement; // Adjusted the target to find the parent li
+                const taskItem = e.target.parentElement.parentElement;
                 taskItem.classList.toggle('completed');
                 sortTasks();
             } else if (e.target && e.target.classList.contains('delete-btn')) {
                 if (confirm('Are you sure you want to delete this task?')) {
-                    const taskItem = e.target.parentElement.parentElement; // Adjusted the target to find the parent li
+                    const taskItem = e.target.parentElement.parentElement;
                     taskItem.remove();
                     sortTasks();
                 }
@@ -197,8 +217,8 @@
             tasks.sort((a, b) => {
                 switch (sortingMethod) {
                     case 'due-date':
-                        const aDueDate = a.querySelector('.due-date').textContent.split(': ')[1];
-                        const bDueDate = b.querySelector('.due-date').textContent.split(': ')[1];
+                        const aDueDate = a.querySelector('.due-timer').textContent.split(': ')[1];
+                        const bDueDate = b.querySelector('.due-timer').textContent.split(': ')[1];
                         return new Date(aDueDate) - new Date(bDueDate);
 
                     case 'priority':
