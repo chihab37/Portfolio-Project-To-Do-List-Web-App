@@ -38,8 +38,10 @@
         #task-form {
             background-color: #fff;
             padding: 20px;
-            border-radius: 5px;
+            border-radius: 10px; /* Rounded corners for the form */
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 400px; /* Limit the width of the form */
+            margin: 0 auto; /* Center the form horizontally */
         }
 
         /* Task List Styles */
@@ -108,7 +110,7 @@
                 <option value="personal">Personal</option>
                 <!-- Add more categories as needed -->
             </select>
-            <button type="submit">Add</button>
+            <button type="submit" style="background-color: #3498db; color: #fff; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px;">Add Task</button>
         </form>
     </div>
     <ul id="task-list">
