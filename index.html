@@ -95,6 +95,22 @@
             background-color: #e0e0e0; /* Lighter gray on hover */
             transform: translateY(-3px);
         }
+
+        /* Button Styles */
+        .btn {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-right: 5px;
+        }
+
+        .btn:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+        }
     </style>
 </head>
 <body>
@@ -117,7 +133,7 @@
                     <option value="personal">Personal</option>
                     <!-- Add more categories as needed -->
                 </select>
-                <button type="submit">Add Task</button>
+                <button type="submit" class="btn">Add Task</button>
             </form>
         </div>
         <ul id="task-list">
@@ -144,9 +160,9 @@
                     <p class="description">${descriptionInput.value}</p>
                     <p class="due-date">Due Date: ${dueDateInput.value}</p>
                     <p class="priority">Priority: ${priorityInput.value}</p>
-                    <button class="edit-btn">Edit</button>
-                    <button class="complete-btn">Mark as Complete</button>
-                    <button class="delete-btn">Delete</button>
+                    <button class="btn edit-btn">Edit</button>
+                    <button class="btn complete-btn">Mark as Complete</button>
+                    <button class="btn delete-btn">Delete</button>
                 `;
                 taskList.appendChild(taskItem);
                 taskInput.value = '';
