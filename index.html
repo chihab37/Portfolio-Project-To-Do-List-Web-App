@@ -14,7 +14,7 @@
             text-align: center;
         }
 
-         /* Title Styles */
+        /* Title Styles */
         header {
             background-color: #3498db;
             padding: 20px;
@@ -24,126 +24,14 @@
         h1 {
             color: #3498db; /* Blue color for the title */
         }
-        
-        /* Theme Styles */
-        .dark-theme {
-            background-color: #333;
-            color: #fff;
-        }
 
-        /* Form Styles */
-        #task-form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Task List Styles */
-        #task-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        li {
-            background-color: #fff;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-
-        li:hover {
-            background-color: #f1f1f1;
-            transform: translateY(-3px);
-        }
-
-        /* Animation */
-        @keyframes slideInFromLeft {
-            0% {
-                transform: translateX(-50px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            #task-form {
-                width: 100%;
-            }
-            li {
-                width: 100%;
-            }
-        }
+        /* ... rest of your styles ... */
     </style>
 </head>
 <body>
     <header>
         <h1>ToDo List</h1>
     </header>
-    <div id="task-form">
-        <form id="task-form-inner">
-            <input type="text" id="task" placeholder="Add a new task" required>
-            <textarea id="task-description" placeholder="Task description"></textarea>
-            <input type="date" id="due-date">
-            <select id="priority">
-                <option value="low">Low Priority</option>
-                <option value="medium">Medium Priority</option>
-                <option value="high">High Priority</option>
-            </select>
-            <select id="category">
-                <option value="work">Work</option>
-                <option value="personal">Personal</option>
-                <!-- Add more categories as needed -->
-            </select>
-            <button type="submit">Add</button>
-        </form>
-    </div>
-    <ul id="task-list">
-        <!-- Tasks will be added here -->
-    </ul>
-
-    <script>
-        const taskForm = document.getElementById('task-form-inner');
-        const taskInput = document.getElementById('task');
-        const descriptionInput = document.getElementById('task-description');
-        const dueDateInput = document.getElementById('due-date');
-        const priorityInput = document.getElementById('priority');
-        const categoryInput = document.getElementById('category');
-        const taskList = document.getElementById('task-list');
-
-        taskForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const taskText = taskInput.value.trim();
-            if (taskText !== '') {
-                const taskItem = document.createElement('li');
-                taskItem.className = categoryInput.value; // Add category as a class
-                taskItem.innerHTML = `
-                    <span>${taskText}</span>
-                    <p class="description">${descriptionInput.value}</p>
-                    <p class="due-date">Due Date: ${dueDateInput.value}</p>
-                    <p class="priority">Priority: ${priorityInput.value}</p>
-                    <button class="edit-btn">Edit</button>
-                    <button class="complete-btn">Mark as Complete</button>
-                    <button class="delete-btn">Delete</button>
-                `;
-                taskList.appendChild(taskItem);
-                taskInput.value = '';
-                descriptionInput.value = '';
-                dueDateInput.value = '';
-                priorityInput.value = 'low';
-                categoryInput.value = 'work';
-            }
-        });
-    </script>
+    <!-- ... rest of your HTML ... -->
 </body>
 </html>
