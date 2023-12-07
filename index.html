@@ -16,32 +16,56 @@
 
         /* Title Styles */
         header {
+            background-color: #3498db; /* Blue background color for the header */
             padding: 20px;
-            color: #fff;
+            color: #fff; /* White text color for the header */
+            font-size: 28px;
+            font-weight: bold;
         }
 
-        h1 {
-            background-color: #3498db; /* Blue background color for the title */
-            padding: 10px; /* Add padding around the title */
-            display: inline-block; /* Make the background size adjust to the title size */
-            color: #fff; /* Text color for the title */
-            border-radius: 20px; /* Apply rounded corners to the background */
-        }
-        
-        /* Theme Styles */
-        .dark-theme {
-            background-color: #333;
-            color: #fff;
-        }
-
-        /* Form Styles */
-        #task-form {
+        /* Container Styles */
+        .container {
+            max-width: 800px; /* Limit the content width */
+            margin: 0 auto; /* Center the content horizontally */
+            padding: 20px;
             background-color: #fff;
+            border-radius: 10px; /* Rounded corners for the container */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for the container */
+        }
+
+        /* "Add New Task" Styles */
+        #task-form {
+            background-color: #f9f9f9;
             padding: 20px;
             border-radius: 10px; /* Rounded corners for the form */
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            max-width: 400px; /* Limit the width of the form */
-            margin: 0 auto; /* Center the form horizontally */
+        }
+
+        #task-form input[type="text"],
+        #task-form textarea,
+        #task-form input[type="date"],
+        #task-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #task-form button[type="submit"] {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        #task-form button[type="submit"]:hover {
+            background-color: #2980b9; /* Darker blue on hover */
         }
 
         /* Task List Styles */
@@ -51,10 +75,10 @@
         }
 
         li {
-            background-color: #fff;
+            background-color: #f9f9f9;
             margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
+            padding: 20px;
+            border-radius: 10px; /* Rounded corners for task items */
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
@@ -64,7 +88,7 @@
         }
 
         li:hover {
-            background-color: #f1f1f1;
+            background-color: #e0e0e0; /* Lighter gray on hover */
             transform: translateY(-3px);
         }
 
@@ -89,29 +113,34 @@
                 width: 100%;
             }
         }
-    </style>
+   </style>
 </head>
 <body>
     <header>
-        <h1>ToDo List</h1>
+        ToDo List
     </header>
-    <div id="task-form">
-        <form id="task-form-inner">
-            <input type="text" id="task" placeholder="Add a new task" required>
-            <textarea id="task-description" placeholder="Task description"></textarea>
-            <input type="date" id="due-date">
-            <select id="priority">
-                <option value="low">Low Priority</option>
-                <option value="medium">Medium Priority</option>
-                <option value="high">High Priority</option>
-            </select>
-            <select id="category">
-                <option value="work">Work</option>
-                <option value="personal">Personal</option>
-                <!-- Add more categories as needed -->
-            </select>
-            <button type="submit" style="background-color: #3498db; color: #fff; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px;">Add Task</button>
-        </form>
+    <div class="container">
+        <div id="task-form">
+            <form id="task-form-inner">
+                <input type="text" id="task" placeholder="Add a new task" required>
+                <textarea id="task-description" placeholder="Task description"></textarea>
+                <input type="date" id="due-date">
+                <select id="priority">
+                    <option value="low">Low Priority</option>
+                    <option value="medium">Medium Priority</option>
+                    <option value="high">High Priority</option>
+                </select>
+                <select id="category">
+                    <option value="work">Work</option>
+                    <option value="personal">Personal</option>
+                    <!-- Add more categories as needed -->
+                </select>
+                <button type="submit">Add Task</button>
+            </form>
+        </div>
+        <ul id="task-list">
+            <!-- Tasks will be added here -->
+        </ul>
     </div>
     <ul id="task-list">
         <!-- Tasks will be added here -->
