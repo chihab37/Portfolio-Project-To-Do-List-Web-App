@@ -87,33 +87,15 @@
             transition: background-color 0.3s, transform 0.2s;
         }
 
+        li.completed {
+            background-color: #2ecc71; /* Green background color for completed tasks */
+        }
+
         li:hover {
             background-color: #e0e0e0; /* Lighter gray on hover */
             transform: translateY(-3px);
         }
-
-        /* Animation */
-        @keyframes slideInFromLeft {
-            0% {
-                transform: translateX(-50px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            #task-form {
-                width: 100%;
-            }
-            li {
-                width: 100%;
-            }
-        }
-   </style>
+    </style>
 </head>
 <body>
     <header>
@@ -142,10 +124,6 @@
             <!-- Tasks will be added here -->
         </ul>
     </div>
-    <ul id="task-list">
-        <!-- Tasks will be added here -->
-    </ul>
-
     <script>
         const taskForm = document.getElementById('task-form-inner');
         const taskInput = document.getElementById('task');
@@ -176,8 +154,48 @@
                 dueDateInput.value = '';
                 priorityInput.value = 'low';
                 categoryInput.value = 'work';
+
+                sortTasks();
             }
         });
+
+        taskList.addEventListener('click', function (e) {
+            if (e.target && e.target.classList.contains('complete-btn')) {
+                const taskItem = e.target.parentElement;
+                taskItem.classList.toggle('completed');
+                sortTasks();
+            }
+        });
+
+        function sortTasks() {
+            const tasks = Array.from(taskList.children);
+            const sortingMethod = sortSelect.value;
+
+            tasks.sort((a, b) => {
+                switch (sortingMethod) {
+                    case 'due-date':
+                        const aDueDate = a.querySelector('.due-date').textContent.split(': ')[1];
+                        const bDueDate = b.querySelector('.due-date').textContent.split(': ')[1];
+                        return new Date(aDueDate) - new Date(bDueDate);
+
+                    case 'priority':
+                        const aPriority = a.querySelector('.priority').textContent.split(': ')[1];
+                        const bPriority = b.querySelector('.priority').textContent.split(': ')[1];
+                        return aPriority.localeCompare(bPriority);
+
+                    case 'category':
+                        return a.className.localeCompare(b.className);
+
+                    default:
+                        return 0;
+                }
+            });
+
+            taskList.innerHTML = '';
+            tasks.forEach(task => {
+                taskList.appendChild(task);
+            });
+        }
     </script>
 </body>
 </html>
