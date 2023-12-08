@@ -130,6 +130,7 @@
             color: #777;
             margin-top: 5px;
         }
+
  /* Responsive Design */
         @media screen and (max-width: 768px) {
             .container {
@@ -168,6 +169,24 @@
     <header>
         ToDo List
     </header>
+<!-- Login Form -->
+<div id="login-form" class="form-container">
+    <form id="login-form-inner">
+        <input type="email" id="login-email" placeholder="Email" required>
+        <input type="password" id="login-password" placeholder="Password" required>
+        <button type="submit" class="btn">Login</button>
+    </form>
+</div>
+
+<!-- Registration Form -->
+<div id="registration-form" class="form-container">
+    <form id="registration-form-inner">
+        <input type="email" id="register-email" placeholder="Email" required>
+        <input type="password" id="register-password" placeholder="Password" required>
+        <input type="password" id="register-confirm-password" placeholder="Confirm Password" required>
+        <button type="submit" class="btn">Register</button>
+    </form>
+</div>
     <div class="container">
         <div id="task-form">
             <form id="task-form-inner">
