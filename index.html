@@ -310,6 +310,62 @@
             taskList.appendChild(task);
             attachCompleteBtnClickEvent(task);
         });
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle Login Form Submission
+    document.getElementById('login-form-inner').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Perform client-side validation
+        var loginEmail = document.getElementById('login-email').value;
+        var loginPassword = document.getElementById('login-password').value;
+
+        if (validateEmail(loginEmail) && validatePassword(loginPassword)) {
+            // AJAX request to back-end login API
+            fetch('/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: loginEmail, password: loginPassword })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle response here (e.g., store JWT, redirect user)
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    });
+
+    // Handle Registration Form Submission
+    document.getElementById('registration-form-inner').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Perform client-side validation
+        var registerEmail = document.getElementById('register-email').value;
+        var registerPassword = document.getElementById('register-password').value;
+        var confirmPassword = document.getElementById('register-confirm-password').value;
+
+        if (validateEmail(registerEmail) && validatePassword(registerPassword) && registerPassword === confirmPassword) {
+            // AJAX request to back-end registration API
+            fetch('/api/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: registerEmail, password: registerPassword })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle response here (e.g., notify user of successful registration)
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    });
+
+    function validateEmail(email) {
+        // Add email validation logic here
+        return true;
+    }
+
+    function validatePassword(password) {
+        // Add password validation logic here
+        return true;
+    }
+});
     }
 </script>
 </body>
