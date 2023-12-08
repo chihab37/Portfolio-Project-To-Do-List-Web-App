@@ -24,6 +24,28 @@
             border-radius: 20px 20px 0 0;
         }
 
+        /* Login and Register Tabs */
+        .login-register-tabs {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+        }
+
+        .login-register-tabs button {
+            background: none;
+            border: none;
+            color: #3498db;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-left: 10px;
+            padding: 5px 10px;
+        }
+
+        .login-register-tabs button:hover {
+            text-decoration: underline;
+        }
+
         /* Form Container Styles */
         .form-container {
             margin: 20px auto;
@@ -105,6 +127,12 @@
 <body>
     <header>ToDo List</header>
 
+    <!-- Login and Register Tabs -->
+    <div class="login-register-tabs">
+        <button id="login-tab">Login</button>
+        <button id="register-tab">Register</button>
+    </div>
+
     <!-- Login Form -->
     <div class="form-container" id="login-form">
         <form id="login-form-inner">
@@ -115,7 +143,7 @@
     </div>
 
     <!-- Registration Form -->
-    <div class="form-container" id="registration-form">
+    <div class="form-container" id="registration-form" style="display: none;">
         <form id="registration-form-inner">
             <input type="email" id="register-email" placeholder="Email" required>
             <input type="password" id="register-password" placeholder="Password" required>
@@ -148,6 +176,9 @@
             <!-- Tasks will be added here -->
         </ul>
     </div>
+    <script>
+        // JavaScript code remains the same as in the original code
+    </script>
     <script>
     // Set minimum due date to today
     document.getElementById('due-date').min = new Date().toISOString().split('T')[0];
